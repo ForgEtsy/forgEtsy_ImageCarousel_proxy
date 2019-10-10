@@ -12,9 +12,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        {/**
-          MODULES GO HERE
-         */}
+        <h1>Hello Y'all's guyses</h1>
       </div>
     )
   }
