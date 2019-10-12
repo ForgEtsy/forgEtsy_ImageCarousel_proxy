@@ -1,11 +1,18 @@
-h1 {
-  color: peru;
+.header {
+  max-width: 1400px;
+  width: auto;
 }
 
-h2{
-  color: blue;
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  height: 200px;
+  width: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; 
 }
 
-.test {
-  color: green;
+.image {
+  width: 20%;
 }

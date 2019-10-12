@@ -11,22 +11,26 @@ class App extends React.Component {
       url_170x135s: [],
       url_570xNs: [],
       url_fullxfull: [],
+      index: 0,
     }
   }
 
   getImageUrls(){
     axios.get('http://localhost:3003/urls', {
       params: {
-        productId: 729513146
+        productId: 72951314
       }
     })
     .then((urls) => {
-      console.log(urls);
+
       const seventyFives = [];
       const oneSeventies = [];
       const fiveSeventies = [];
       const fulls = [];
       let images = urls.data[0].Images
+      if(images.length === 0){
+        throw images
+      }
       for(let i = 0; i < images.length; i++){
         seventyFives.push(images[i].url_75x75);
         oneSeventies.push(images[i].url_170x135);
@@ -41,17 +45,32 @@ class App extends React.Component {
       })
     })
     .catch((err) => {
-      console.log(err);
+      if(err.response.status === 422){
+        console.log('No Product Found with that Id')
+      }else{
+        console.log('No images found for that product!')
+      }
+    })
+  }
+
+  cycleImage(){
+    this.setState({
+      index: (this.state.index === this.state.url_fullxfull.length - 1) ? 0 : this.state.index + 1,
     })
   }
 
   render(){
     return (
       <div>
-        <h1>{this.state.test}</h1>
-        <img src={this.state.url_170x135s[0]}/>
-        <h3 className={Style.test}>One more</h3>
-        <button onClick={this.getImageUrls.bind(this)}>Get Urls</button>
+        <div className={Style.header}>
+          <h1>forGetsy</h1>
+          <h3>Search Bar</h3>
+        </div>
+        <div className={Style.carousel}>
+          <img className={Style.image} src={this.state.url_75x75s[this.state.index]}/>
+        </div>
+          <button onClick={this.getImageUrls.bind(this)}>Get Urls</button>
+          <button onClick={this.cycleImage.bind(this)}>Cycle through</button>
       </div>
     )
   }
