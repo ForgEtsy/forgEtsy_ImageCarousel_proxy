@@ -16,13 +16,14 @@ class App extends React.Component {
   }
 
   getImageUrls(){
-    axios.get('http://localhost:3003/urls', {
+    console.log('CLICKED THE GD THING')
+    axios.get('http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls', {
       params: {
-        productId: 72951314
+        productId: 729513146
       }
     })
     .then((urls) => {
-
+      console.log(urls);
       const seventyFives = [];
       const oneSeventies = [];
       const fiveSeventies = [];
