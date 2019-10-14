@@ -6,7 +6,6 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      test: 'Not Hello World',
       url_75x75s: [],
       url_170x135s: [],
       url_570xNs: [],
@@ -15,15 +14,23 @@ class App extends React.Component {
     }
   }
 
-  getImageUrls(){
-    console.log('CLICKED THE GD THING')
-    axios.get('http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls', {
+  cycleImage(){
+    this.setState({
+      index: (this.state.index === this.state.url_fullxfull.length - 1) ? 0 : this.state.index + 1,
+    })
+  }
+
+  componentDidMount(){
+    // let http = 'http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls';
+    let http = 'http://localhost:3003/urls';
+    axios.get(http, {
       params: {
         productId: 729513146
       }
     })
     .then((urls) => {
-      console.log(urls);
+      // Come back and check to see which set(s) of urls
+      // are actually needed for the carousel
       const seventyFives = [];
       const oneSeventies = [];
       const fiveSeventies = [];
@@ -54,12 +61,6 @@ class App extends React.Component {
     })
   }
 
-  cycleImage(){
-    this.setState({
-      index: (this.state.index === this.state.url_fullxfull.length - 1) ? 0 : this.state.index + 1,
-    })
-  }
-
   render(){
     return (
       <div>
@@ -70,7 +71,6 @@ class App extends React.Component {
         <div className={Style.carousel}>
           <img className={Style.image} src={this.state.url_75x75s[this.state.index]}/>
         </div>
-          <button onClick={this.getImageUrls.bind(this)}>Get Urls</button>
           <button onClick={this.cycleImage.bind(this)}>Cycle through</button>
       </div>
     )
