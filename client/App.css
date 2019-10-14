@@ -1,0 +1,18 @@
+.header {
+  max-width: 1400px;
+  width: auto;
+}
+
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  height: 200px;
+  width: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; 
+}
+
+.image {
+  width: 20%;
+}
