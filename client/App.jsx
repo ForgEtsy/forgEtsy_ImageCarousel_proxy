@@ -57,6 +57,7 @@ class App extends React.Component {
         fiveSeventies.push(images[i].url_570xN);
         fulls.push(images[i].url_fullxfull);
       }
+      console.log(seventyFives)
       this.setState({
         url_75x75s: seventyFives,
         url_170x135s: oneSeventies,
