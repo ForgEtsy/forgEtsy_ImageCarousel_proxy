@@ -2,8 +2,9 @@ import React from 'React';
 import axios from 'axios';
 import Style from './App.css';
 
-import MainImage from './MainImage.jsx';
-import Arrow from './Arrow.jsx';
+import MainImage from './components/MainImage.jsx';
+import ImageBar from './components/ImageBar/ImageBar.jsx'
+import Arrow from './components/Arrow.jsx';
 
 class App extends React.Component {
   constructor(props){
@@ -12,18 +13,27 @@ class App extends React.Component {
       url_75x75s: [],
       url_170x135s: [],
       url_570xNs: [],
-      url_fullxfull: [],
+      url_fullxfulls: [],
       index: 0,
     }
+    this.scrollRight = this.scrollRight.bind(this);
+    this.scrollLeft = this.scrollLeft.bind(this);
   }
 
-  cycleImage(){
+  scrollRight(){
     this.setState({
       index: (this.state.index === this.state.url_fullxfull.length - 1) ? 0 : this.state.index + 1,
     })
   }
+  
+  scrollLeft(){
+    this.setState({
+      index: (this.state.index === 0) ? this.state.url_fullxfull.length - 1 : this.state.index - 1,
+    })
+  }
 
   componentDidMount(){
+    console.log('..Mounted..')
     // let http = 'http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls';
     let http = 'http://localhost:3003/urls';
     axios.get(http, {
@@ -51,8 +61,8 @@ class App extends React.Component {
       this.setState({
         url_75x75s: seventyFives,
         url_170x135s: oneSeventies,
-        url_570xN: fiveSeventies,
-        url_fullxfull: fulls,
+        url_570xNs: fiveSeventies,
+        url_fullxfulls: fulls,
       })
     })
     .catch((err) => {
@@ -72,9 +82,10 @@ class App extends React.Component {
           <h3>Search Bar</h3>
         </div>
         <div className={Style.carousel}>
-          <Arrow direction="left" onclick={/** scroll left */} char="&#9664;" />
-          <MainImage url={this.state.url_fullxfull[0]} />
-          <Arrow direction="right" onclick={/** scroll right */} char="&#9654;" />
+          {/**<Arrow direction="left" onclick={this.scrollLeft} char="&#9664;"/>*/}
+          <MainImage url={this.state.url_570xNs[this.state.index]}/>
+          {/** <Arrow direction="right" onclick={this.scrollRight} char="&#9654;"/>*/}
+          <ImageBar urls={this.state.url_75x75s}/>
         </div>
       </div>
     )

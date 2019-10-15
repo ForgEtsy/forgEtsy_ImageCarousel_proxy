@@ -5,7 +5,7 @@ const Arrow = (props) => {
     // Props to pass down - direction, click function, code for left/right
     return (
         <div>
-
+            {props.char}
         </div>
     )
 }
