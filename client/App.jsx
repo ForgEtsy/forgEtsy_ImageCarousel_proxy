@@ -2,28 +2,47 @@ import React from 'React';
 import axios from 'axios';
 import Style from './App.css';
 
+import Scroller from './components/Scroller/Scroller.jsx';
+import ImageBar from './components/ImageBar/ImageBar.jsx'
+
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      test: 'Not Hello World',
       url_75x75s: [],
       url_170x135s: [],
       url_570xNs: [],
-      url_fullxfull: [],
+      url_fullxfulls: [],
       index: 0,
     }
+    this.scrollRight = this.scrollRight.bind(this);
+    this.scrollLeft = this.scrollLeft.bind(this);
   }
 
-  getImageUrls(){
-    console.log('CLICKED THE GD THING')
-    axios.get('http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls', {
+  scrollRight(){
+    this.setState({
+      index: (this.state.index === this.state.url_fullxfulls.length - 1) ? 0 : this.state.index + 1,
+    })
+  }
+  
+  scrollLeft(){
+    this.setState({
+      index: (this.state.index === 0) ? this.state.url_fullxfulls.length - 1 : this.state.index - 1,
+    })
+  }
+
+  componentDidMount(){
+    console.log('..Mounted..')
+    // let http = 'http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls';
+    let http = 'http://localhost:3003/urls';
+    axios.get(http, {
       params: {
         productId: 729513146
       }
     })
     .then((urls) => {
-      console.log(urls);
+      // Come back and check to see which set(s) of urls
+      // are actually needed for the carousel
       const seventyFives = [];
       const oneSeventies = [];
       const fiveSeventies = [];
@@ -41,8 +60,8 @@ class App extends React.Component {
       this.setState({
         url_75x75s: seventyFives,
         url_170x135s: oneSeventies,
-        url_570xN: fiveSeventies,
-        url_fullxfull: fulls,
+        url_570xNs: fiveSeventies,
+        url_fullxfulls: fulls,
       })
     })
     .catch((err) => {
@@ -54,12 +73,6 @@ class App extends React.Component {
     })
   }
 
-  cycleImage(){
-    this.setState({
-      index: (this.state.index === this.state.url_fullxfull.length - 1) ? 0 : this.state.index + 1,
-    })
-  }
-
   render(){
     return (
       <div>
@@ -68,10 +81,13 @@ class App extends React.Component {
           <h3>Search Bar</h3>
         </div>
         <div className={Style.carousel}>
-          <img className={Style.image} src={this.state.url_75x75s[this.state.index]}/>
+          <Scroller 
+            url={this.state.url_570xNs[this.state.index]}
+            scrollLeft={this.scrollLeft}
+            scrollRight={this.scrollRight}
+          />
+          <ImageBar urls={this.state.url_75x75s}/>
         </div>
-          <button onClick={this.getImageUrls.bind(this)}>Get Urls</button>
-          <button onClick={this.cycleImage.bind(this)}>Cycle through</button>
       </div>
     )
   }

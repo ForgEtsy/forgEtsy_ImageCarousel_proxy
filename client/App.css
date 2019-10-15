@@ -4,15 +4,8 @@
 }
 
 .carousel {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  height: 200px;
-  width: auto;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar; 
-}
-
-.image {
-  width: 20%;
+  text-align: center;
+  height: auto;
+  width: 60%;
+  margin-left: 15%; 
 }
