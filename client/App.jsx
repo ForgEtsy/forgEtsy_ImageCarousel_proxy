@@ -21,13 +21,13 @@ class App extends React.Component {
 
   scrollRight(){
     this.setState({
-      index: (this.state.index === this.state.url_fullxfull.length - 1) ? 0 : this.state.index + 1,
+      index: (this.state.index === this.state.url_fullxfulls.length - 1) ? 0 : this.state.index + 1,
     })
   }
   
   scrollLeft(){
     this.setState({
-      index: (this.state.index === 0) ? this.state.url_fullxfull.length - 1 : this.state.index - 1,
+      index: (this.state.index === 0) ? this.state.url_fullxfulls.length - 1 : this.state.index - 1,
     })
   }
 
