@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Style from './MainImage.css'
 
 const MainImage = ({ url }) => {
-    // TODO: Add class name and css file
     return (
-        <div >
+        <div className={Style.mainimage}>
             <img src={url}/>
         </div>
     )

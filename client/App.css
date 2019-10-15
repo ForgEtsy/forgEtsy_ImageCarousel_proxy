@@ -4,11 +4,8 @@
 }
 
 .carousel {
+  text-align: center;
   height: auto;
   width: 60%;
   margin-left: 15%; 
-}
-
-.image {
-  width: 20%;
 }

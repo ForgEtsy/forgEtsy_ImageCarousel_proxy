@@ -2,9 +2,8 @@ import React from 'React';
 import axios from 'axios';
 import Style from './App.css';
 
-import MainImage from './components/MainImage.jsx';
+import Scroller from './components/Scroller/Scroller.jsx';
 import ImageBar from './components/ImageBar/ImageBar.jsx'
-import Arrow from './components/Arrow.jsx';
 
 class App extends React.Component {
   constructor(props){
@@ -82,9 +81,11 @@ class App extends React.Component {
           <h3>Search Bar</h3>
         </div>
         <div className={Style.carousel}>
-          {/**<Arrow direction="left" onclick={this.scrollLeft} char="&#9664;"/>*/}
-          <MainImage url={this.state.url_570xNs[this.state.index]}/>
-          {/** <Arrow direction="right" onclick={this.scrollRight} char="&#9654;"/>*/}
+          <Scroller 
+            url={this.state.url_570xNs[this.state.index]}
+            scrollLeft={this.scrollLeft}
+            scrollRight={this.scrollRight}
+          />
           <ImageBar urls={this.state.url_75x75s}/>
         </div>
       </div>
