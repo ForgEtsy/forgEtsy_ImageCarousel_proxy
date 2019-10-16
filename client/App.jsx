@@ -34,15 +34,15 @@ class App extends React.Component {
   componentDidMount(){
     console.log('..Mounted..')
     // let http = 'http://ec2-3-15-235-11.us-east-2.compute.amazonaws.com/urls';
-    let http = 'http://localhost:3003/urls';
+    let http = 'http://localhost:3003/urls/random';
+    // let http = 'http://localhost:3003/urls';
     axios.get(http, {
       params: {
+        // if enpoint is /urls, this is necessary
         productId: 729513146
       }
     })
     .then(( { data }) => {
-      // Come back and check to see which set(s) of urls
-      // are actually needed for the carousel
       console.log(data);
       this.setState({
         url_75x75s: data.seventyFives,
