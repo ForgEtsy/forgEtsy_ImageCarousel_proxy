@@ -1,3 +1,7 @@
-.arrow {
+.arrowright {
+    justify-self: center;
+}
+
+.arrowleft {
     justify-self: center;
 }
