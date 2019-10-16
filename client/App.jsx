@@ -40,32 +40,19 @@ class App extends React.Component {
         productId: 729513146
       }
     })
-    .then((urls) => {
+    .then(( { data }) => {
       // Come back and check to see which set(s) of urls
       // are actually needed for the carousel
-      const seventyFives = [];
-      const oneSeventies = [];
-      const fiveSeventies = [];
-      const fulls = [];
-      let images = urls.data[0].Images
-      if(images.length === 0){
-        throw images
-      }
-      for(let i = 0; i < images.length; i++){
-        seventyFives.push(images[i].url_75x75);
-        oneSeventies.push(images[i].url_170x135);
-        fiveSeventies.push(images[i].url_570xN);
-        fulls.push(images[i].url_fullxfull);
-      }
-      console.log(seventyFives)
+      console.log(data);
       this.setState({
-        url_75x75s: seventyFives,
-        url_170x135s: oneSeventies,
-        url_570xNs: fiveSeventies,
-        url_fullxfulls: fulls,
+        url_75x75s: data.seventyFives,
+        url_170x135s: data.oneSeventies,
+        url_570xNs: data.fiveSeventies,
+        url_fullxfulls: data.fulls,
       })
     })
     .catch((err) => {
+      console.log(err)
       if(err.response.status === 422){
         console.log('No Product Found with that Id')
       }else{
