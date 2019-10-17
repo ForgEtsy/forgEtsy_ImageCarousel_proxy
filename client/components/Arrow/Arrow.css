@@ -1,7 +1,12 @@
-.arrowright {
-    justify-self: center;
+.arrowleft {
+    justify-self: end;
+    position: relative;
+    left: 3%;
+    top: 50%;
 }
 
-.arrowleft {
-    justify-self: center;
+.arrowright {
+    position: relative;
+    left: 94%;
+    top: 46%;
 }
