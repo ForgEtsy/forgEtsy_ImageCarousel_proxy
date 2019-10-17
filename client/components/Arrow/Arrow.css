@@ -10,3 +10,14 @@
     left: 94%;
     top: 46%;
 }
+
+
+.circle {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: blanchedalmond;
+    border-radius: 50%;
+}
