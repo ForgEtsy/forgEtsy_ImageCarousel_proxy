@@ -7,9 +7,7 @@ const Scroller = ({ url, scrollLeft, scrollRight }) => {
     // TODO: Add class name and css file
     return (
         <div className={Style.scroller}>
-            {<Arrow direction={1} onclick={scrollLeft} char="&#9664;"/>}
-            {<MainImage url={url} />}
-            {<Arrow direction={0} onclick={scrollRight} char="&#9654;"/>}
+            {<MainImage url={url} scrollLeft={scrollLeft} scrollRight={scrollRight} />}
         </div>
     )
 }

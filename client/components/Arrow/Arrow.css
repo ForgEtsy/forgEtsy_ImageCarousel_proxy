@@ -1,7 +1,24 @@
-.arrowright {
-    justify-self: center;
+.arrowleft {
+    position: relative;
+    width: 30px;
+    left: 3%;
+    top: 50%;
 }
 
-.arrowleft {
-    justify-self: center;
+.arrowright {
+    position: relative;
+    text-align: center;
+    width: 30px;
+    left: 94%;
+    top: 45%;
+}
+
+
+.circle {
+    text-align: center;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
 }
