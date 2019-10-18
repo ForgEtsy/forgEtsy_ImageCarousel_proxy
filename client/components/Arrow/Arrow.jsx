@@ -6,9 +6,9 @@ const Arrow = ({ char, onclick, direction}) => {
     // Props to pass down - direction, click function, code for left/right
     return (
         <div className={direction ? Style.arrowleft : Style.arrowright}>
-            <div className={Style.circle} onClick={onclick}>
-                <div>{char}</div>
-            </div>
+            <button className={Style.circle} onClick={onclick}>
+                {char}
+            </button>
         </div>
     )
 }
